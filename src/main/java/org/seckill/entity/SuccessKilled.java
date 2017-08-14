@@ -2,7 +2,7 @@ package org.seckill.entity;
 
 import java.util.Date;
 
-public class Successkilled {
+public class SuccessKilled {
 	
 	private Long seckillId;
 	private long userPhone;

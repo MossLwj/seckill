@@ -1,6 +1,6 @@
 package org.seckill.dao;
 
-import org.seckill.entity.Successkilled;
+import org.seckill.entity.SuccessKilled;
 
 public interface SuccessKilledDao {
 	
@@ -17,7 +17,7 @@ public interface SuccessKilledDao {
 	 * @param seckillId
 	 * @return
 	 */
-	Successkilled queryByIdWithSeckill(long seckillId);
+	SuccessKilled queryByIdWithSeckill(long seckillId);
 	
 
 }
