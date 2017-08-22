@@ -1,6 +1,7 @@
 package org.seckill.dao;
 
-import static org.junit.Assert.fail;
+import java.util.Date;
+import java.util.List;
 
 import javax.annotation.Resource;
 
@@ -25,20 +26,27 @@ public class SeckillDaoTest {
 	
 	@Test
 	public void testQueryById() {
-		long id = 1000;
+		long id = 1001;
 		Seckill seckill = seckillDao.queryById(id);
 		System.out.println(seckill.getName());
 		System.out.println(seckill);
 	}
 	
 	@Test
-	public void testReduceNumber() throws Exception{
-		
-	}
-
-	@Test
 	public void testQueryAll() throws Exception{
-		
+		int offset = 0;
+		int limit = 100;
+		List<Seckill> seckills = seckillDao.queryAll(offset, limit);
+		for (Seckill seckill : seckills) {
+			System.out.println(seckill);
+		}
+	}
+	
+	@Test
+	public void testReduceNumber() throws Exception{
+		Date killTime = new Date();
+		int updateCount = seckillDao.reduceNumber(1000, killTime);
+		System.out.println("updateCount" + updateCount);
 	}
 
 }
