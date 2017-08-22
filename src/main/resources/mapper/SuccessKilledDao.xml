@@ -5,8 +5,8 @@
 <mapper namespace="org.seckill.dao.SuccessKilledDao">
 	<insert id="insertSuccessKilled">
 	<!-- 当主键冲突的时候会报错，加了ignore之后不会报错，返回的int数据为0，来处理业务逻辑 -->
-		insert ignore into success_killed(seckill_id,userPhone)
-		values(#{seckillId},#{userPhone})
+		insert ignore into success_killed(seckill_id,user_phone,state)
+		values(#{seckillId},#{userPhone},0)
 	</insert>
 	
 	<!-- 查询结果中携带了Seckill实体对象的相关属性 -->
@@ -22,6 +22,7 @@
 		from  success_killed sk, seckill s 
 		where sk.seckill_id = s.seckill_id
 		and sk.seckill_id = #{seckillId}
+		and sk.user_phone = #{userPhone}
 	</select>
 
 </mapper>
