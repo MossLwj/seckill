@@ -51,7 +51,7 @@ public class SeckillServiceImpl implements SeckillService {
 		Date endTime = seckill.getEndTime();
 		//系统当前时间
 		Date nowTime = new Date();
-		if (startTime.getTime() < nowTime.getTime() || endTime.getTime() <nowTime.getTime()) {
+		if (startTime.getTime() > nowTime.getTime() || endTime.getTime() < nowTime.getTime()) {
 			return new Exposer(false, seckillId, nowTime.getTime(),startTime.getTime(),endTime.getTime());
 		}
 		
@@ -76,18 +76,23 @@ public class SeckillServiceImpl implements SeckillService {
 	@Transactional
 	public SeckillExecution executeSeckill(long seckillId, long userPhone, String md5)
 			 throws SeckillException, RepeatKillException, SeckillCloseException {
+		
+		if(md5 == null || !md5.equals(getMD5(seckillId))){
+			throw new SeckillException("seckill data rewrite");
+		}
+		
 		Date killTime = new Date();
 		try {
 			//减库存
 			int updateCount = seckillDao.reduceNumber(seckillId, killTime);
-			if(updateCount <= 0){
+			if (updateCount <= 0) {
 				//没有更新记录，说明秒杀结束
 				throw new SeckillCloseException("seckill is closed");
 			}else{
 				//记录购买行为
 				int insertCount = successKilledDao.insertSuccessKilled(seckillId, userPhone);
 				//唯一：seckillId, userPhone
-				if(insertCount<=0){
+				if (insertCount <= 0) {
 					throw new RepeatKillException("seckill repeated");
 				}else{
 					//秒杀成功
@@ -99,9 +104,9 @@ public class SeckillServiceImpl implements SeckillService {
 			throw e1;
 		} catch (RepeatKillException e2) {
 			throw e2;
-		}catch (Exception e) {
-			logger.error(e.getMessage(),e);
-			//所有编译期异常 转化为运行期异常
+		} catch (Exception e) {
+			logger.error(e.getMessage(), e);
+			// 所有编译期异常 转化为运行期异常
 			throw new SeckillException("seckill inner error");
 		}
 	}
