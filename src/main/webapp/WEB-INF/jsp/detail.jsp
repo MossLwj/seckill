@@ -16,7 +16,7 @@
 				<h2>${seckill.name}</h2>
 			</div>
 		</div>
-		<div class="panel-body">
+		<div class="panel-body text-center">
 			<h2 class="text-danger">
 				<!-- 显示Time图标 -->
 				<span class="glyphicon glyphicon-time"></span>
@@ -33,7 +33,7 @@
 
 				<div class="modal-header">
 					<h3 class="modal-title text-center">
-						<span class="glyphicon glyphicon-phone"></span>
+						<span class="glyphicon glyphicon-phone"></span>秒杀电话
 					</h3>
 				</div>
 
