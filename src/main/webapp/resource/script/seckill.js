@@ -17,6 +17,7 @@ var seckill = {
 	detail : {
 		// 详情页初始化
 		init : function(params) {
+			alert(1111);
 			// 手机验证和登陆，计时交互
 			//规范我们的交互流程
 			//在cookie中查找手机号
@@ -37,13 +38,13 @@ var seckill = {
 
 				});
 				$('#killPhoneBtn').click(function(){
-					var inputPhone = $('killPhoneKey').val();
+					var inputPhone = $('#killPhoneKey').val();
 					//验证手机号是否正确
 					if (!seckill.validatePhone(killPhone)) {
 						// 电话写入cookie
 						$.cookie('killPhone', inputPhone, {
 							expires : 7,
-							path : '/seckill'
+							path : '/seckill/seckill'
 						});
 						// 验证通过，刷新页面
 						window.location.reload();
