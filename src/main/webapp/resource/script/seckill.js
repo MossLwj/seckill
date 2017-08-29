@@ -10,7 +10,7 @@ var seckill = {
 			return '/seckill/seckill/' + seckillId + '/exposer';
 		},
 		execution : function(seckillId ,md5) {
-			return '/seckill/seckill/' + seckillId + '/' + md5 + '/exection';
+			return '/seckill/seckill/' + seckillId + '/' + md5 + '/execution';
 		}
 	},
 	handleSeckillkill : function(seckillId, node) {
