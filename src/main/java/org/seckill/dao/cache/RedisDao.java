@@ -1,6 +1,5 @@
 package org.seckill.dao.cache;
 
-import org.junit.rules.Timeout;
 import org.seckill.entity.Seckill;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
