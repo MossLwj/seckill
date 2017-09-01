@@ -61,6 +61,7 @@ public class RedisDao {
 				//³¬Ê±»º´æ
 				int timeout = 60 * 60;//1Ð¡Ê±
 				String result = jedis.setex(key.getBytes(), timeout, bytes);
+				return result;
 			} finally {
 				jedis.close();
 			}
