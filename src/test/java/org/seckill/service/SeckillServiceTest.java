@@ -67,7 +67,7 @@ public class SeckillServiceTest {
 		if (exposer.isExposed()) {
 			String md5 = exposer.getMd5();
 			SeckillExecution seckillExecution = seckillService.executeSeckillProcedure(seckillId, userPhone, md5);
-			
+			logger.info(seckillExecution.getStateInfo());
 		}
 	}
 
