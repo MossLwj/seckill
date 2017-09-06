@@ -1,8 +1,11 @@
 package org.seckill.service.Impl;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import org.apache.commons.collections.MapUtils;
 import org.seckill.dao.SeckillDao;
 import org.seckill.dao.SuccessKilledDao;
 import org.seckill.dao.cache.RedisDao;
@@ -60,7 +63,7 @@ public class SeckillServiceImpl implements SeckillService {
 				redisDao.putSeckill(seckill);
 			}
 		}
-		
+
 		Date startTime = seckill.getStartTime();
 		Date endTime = seckill.getEndTime();
 		// 系统当前时间
@@ -121,6 +124,32 @@ public class SeckillServiceImpl implements SeckillService {
 			logger.error(e.getMessage(), e);
 			// 所有编译期异常 转化为运行期异常
 			throw new SeckillException("seckill inner error");
+		}
+	}
+
+	public SeckillExecution executeSeckillProcedure(long seckillId, long userPhone, String md5) {
+		if (md5 == null || !md5.equals(getMD5(seckillId))) {
+			return new SeckillExecution(seckillId, SeckillStatesEnum.DATA_REWRITE);
+		}
+		Date killTime = new Date();
+		Map<String, Object> paramMap = new HashMap<String, Object>();
+		paramMap.put("seckillId", seckillId);
+		paramMap.put("phone", userPhone);
+		paramMap.put("killTime", killTime);
+		paramMap.put("result", null);
+		try {
+			seckillDao.killByProcedure(paramMap);
+			// 获取result
+			int result = MapUtils.getInteger(paramMap, "result", -2);
+			if (result == 1) {
+				SuccessKilled sKilled = successKilledDao.queryByIdWithSeckill(seckillId, userPhone);
+				return new SeckillExecution(seckillId, SeckillStatesEnum.SUCCESS, sKilled);
+			} else {
+				return new SeckillExecution(seckillId, SeckillStatesEnum.stateOf(result));
+			}
+		} catch (Exception e) {
+			logger.error(e.getMessage(), e);
+			return new SeckillExecution(seckillId, SeckillStatesEnum.INNER_ERROR);
 		}
 	}
 
