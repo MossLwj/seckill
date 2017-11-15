@@ -1,16 +1,16 @@
 package org.seckill.enums;
 
 /**
- * 使用枚举表述常量数据字段
+ * 浣跨敤鏋氫妇琛ㄨ堪甯搁噺鏁版嵁瀛楁
  * @author Administrator
  *
  */
 public enum SeckillStatesEnum {
-	SUCCESS(1, "秒杀成功"),
-	END(0, "秒杀结束"),
-	REPEAT_KILL(-1, "重复秒杀"),
-	INNER_ERROR(-2, "系统异常"),
-	DATA_REWRITE(-3, "数据篡改");
+	SUCCESS(1, "绉掓潃鎴愬姛"),
+	END(0, "绉掓潃缁撴潫"),
+	REPEAT_KILL(-1, "閲嶅绉掓潃"),
+	INNER_ERROR(-2, "绯荤粺寮傚父"),
+	DATA_REWRITE(-3, "鏁版嵁绡℃敼");
 	
 	private int state;
 	

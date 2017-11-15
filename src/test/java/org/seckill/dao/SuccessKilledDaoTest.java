@@ -9,11 +9,11 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 /**
- * ÅäÖÃspringºÍjUnitµÄÕûºÏ£¬jUnitÆô¶¯Ê±¼ÓÔØspringIOCÈİÆ÷
- * spring-test£¬ jUnit
+ * é…ç½®springå’ŒjUnitçš„æ•´åˆï¼ŒjUnitå¯åŠ¨æ—¶åŠ è½½springIOCå®¹å™¨
+ * spring-testï¼Œ jUnit
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-//¸æËßjUnit£¬spring¶ÔÓ¦µÄÅäÖÃÎÄ¼ş
+//å‘Šè¯‰jUnitï¼Œspringå¯¹åº”çš„é…ç½®æ–‡ä»¶
 @ContextConfiguration({"classpath:spring/spring-dao.xml"})
 public class SuccessKilledDaoTest {
 	

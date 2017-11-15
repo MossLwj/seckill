@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
-@RequestMapping("/seckill") // url:/Ä£¿é/×ÊÔ´/{id}/Ï¸·Ö         /seckill/list
+@RequestMapping("/seckill") // url:/æ¨¡å—/èµ„æº/{id}/ç»†åˆ†         /seckill/list
 public class SeckillController {
 	private final Logger logger = LoggerFactory.getLogger(this.getClass()); 
 	
@@ -32,9 +32,9 @@ public class SeckillController {
 	
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public String list(Model model) {
-		//»ñÈ¡ÁĞ±íÒ³
+		//è·å–åˆ—è¡¨é¡µ
 		List<Seckill> seckills = seckillService.getSeckillList();
-		model.addAttribute("list",seckills);
+		model.addAttribute("list", seckills);
 		//list.jsp + model = ModelAndView
 		return "list";// /WEB-INF/jsp/"list".jsp
 	}
@@ -77,7 +77,7 @@ public class SeckillController {
 			@PathVariable("md5") String md5,
 			@CookieValue(value = "killPhone", required = false) Long userPhone) {
 		if (userPhone == null) {
-			return new SeckillResult<SeckillExecution>(false,"Î´×¢²á");
+			return new SeckillResult<SeckillExecution>(false,"æœªæ³¨å†Œ");
 		}
 		try {
 			SeckillExecution execution = seckillService.executeSeckill(seckillId, userPhone, md5);

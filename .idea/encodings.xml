@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/src/main/java/org/seckill/dao/SeckillDao.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/org/seckill/dao/SuccessKilledDao.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/org/seckill/dao/cache/RedisDao.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/org/seckill/dto/Exposer.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/org/seckill/dto/SeckillExecution.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/org/seckill/dto/SeckillResult.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/org/seckill/entity/SuccessKilled.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/org/seckill/enums/SeckillStatesEnum.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/org/seckill/exception/RepeatKillException.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/org/seckill/exception/SeckillCloseException.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/org/seckill/exception/SeckillException.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/org/seckill/service/Impl/SeckillServiceImpl.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/org/seckill/service/SeckillService.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/org/seckill/web/SeckillController.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/sql/schema.sql" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/sql/seckill.sql" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/test/java/org/seckill/dao/SeckillDaoTest.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/test/java/org/seckill/dao/SuccessKilledDaoTest.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/test/java/org/seckill/dao/cache/RedisDaoTest.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/test/java/org/seckill/service/SeckillServiceTest.java" charset="UTF-8" />
+  </component>
+</project>

@@ -1,24 +1,24 @@
--- ÃëÉ±Ö´ĞĞµÄ´æ´¢¹ı³Ì
-DELIMITER $$ -- console ; ×ª»»Îª  $$
--- ¶¨Òå´æ´¢¹ı³Ì
--- ²ÎÊı£º in ÊäÈë²ÎÊı£» out Êä³ö²ÎÊı 
--- ROW_COUNT(): ·µ»ØÉÏÒ»ÌõĞŞ¸ÄÀàĞÍsql£¨delete£¬insert£¬update£©µÄÓ°ÏìĞĞÊı
+-- ç§’æ€æ‰§è¡Œçš„å­˜å‚¨è¿‡ç¨‹
+DELIMITER $$ -- console ; è½¬æ¢ä¸º  $$
+-- å®šä¹‰å­˜å‚¨è¿‡ç¨‹
+-- å‚æ•°ï¼š in è¾“å…¥å‚æ•°ï¼› out è¾“å‡ºå‚æ•° 
+-- ROW_COUNT(): è¿”å›ä¸Šä¸€æ¡ä¿®æ”¹ç±»å‹sqlï¼ˆdeleteï¼Œinsertï¼Œupdateï¼‰çš„å½±å“è¡Œæ•°
 CREATE PROCEDURE `seckill`.`execute_seckill`
 	(IN v_seckill_id BIGINT,IN v_phone BIGINT, IN v_kill_time TIMESTAMP, OUT r_result INT)
 	BEGIN
 		DECLARE insert_count INT DEFAULT 0;
 		START TRANSACTION;
--- Ö´ĞĞ²åÈëÃëÉ±¼ÇÂ¼
+-- æ‰§è¡Œæ’å…¥ç§’æ€è®°å½•
 		INSERT IGNORE INTO success_killed
 			(seckill_id,user_phone,create_time)
 			VALUES(v_seckill_id,v_phone,v_kill_time);
 
 		SELECT ROW_COUNT() INTO insert_count;
-		-- Èç¹û²åÈëµÄÊı¾İÌõÊıĞ¡ÓÚ1Ôò»Ø¹ö²Ù×÷
+		-- å¦‚æœæ’å…¥çš„æ•°æ®æ¡æ•°å°äº1åˆ™å›æ»šæ“ä½œ
 		IF (insert_count = 0) THEN 
 			ROLLBACK; 
 			SET r_result = -1;
-		-- Èç¹ûresultĞ¡ÓÚ0µÄÇé¿öÏÂµÄ»°ËµÃ÷ÏµÍ³´íÎóÁË
+		-- å¦‚æœresultå°äº0çš„æƒ…å†µä¸‹çš„è¯è¯´æ˜ç³»ç»Ÿé”™è¯¯äº†
 		ELSEIF(insert_count < 0) THEN 
 			ROLLBACK; 
 			SET r_result = -2;

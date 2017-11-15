@@ -12,7 +12,7 @@ import org.seckill.entity.Seckill;
 public interface SeckillDao {
 
 	/**
-	 * ¼õ¿â´æ½Ó¿Ú
+	 * å‡åº“å­˜æ¥å£
 	 * 
 	 * @param seckillId
 	 * @param killTime
@@ -21,7 +21,7 @@ public interface SeckillDao {
 	int reduceNumber(@Param("seckillId") long seckillId, @Param("killTime") Date killTime);
 
 	/**
-	 * ¸ù¾İid²éÑ¯ÃëÉ±¶ÔÏó
+	 * æ ¹æ®idæŸ¥è¯¢ç§’æ€å¯¹è±¡
 	 * 
 	 * @param seckillId
 	 * @return
@@ -29,17 +29,17 @@ public interface SeckillDao {
 	Seckill queryById(long seckillId);
 
 	/**
-	 * ¸ù¾İÆ«ÒÆÁ¿²éÑ¯ÃëÉ±ÉÌÆ·ÁĞ±í
+	 * æ ¹æ®åç§»é‡æŸ¥è¯¢ç§’æ€å•†å“åˆ—è¡¨
 	 * 
 	 * @param offset
 	 * @param limit
 	 * @return
-	 * ×¢Òâµã£º@Param("offset")ÓÃÒÔ±êÊ¾²ÎÊıµÄÃû³Æ£¬java²»»á±£´æĞÎ²Î
+	 * æ³¨æ„ç‚¹ï¼š@Param("offset")ç”¨ä»¥æ ‡ç¤ºå‚æ•°çš„åç§°ï¼Œjavaä¸ä¼šä¿å­˜å½¢å‚
 	 */
 	List<Seckill> queryAll(@Param("offset") int offset, @Param("limit") int limit);
 	
 	/**
-	 * Ê¹ÓÃ´æ´¢¹ı³ÌÖ´ĞĞÃëÉ±
+	 * ä½¿ç”¨å­˜å‚¨è¿‡ç¨‹æ‰§è¡Œç§’æ€
 	 * @param paramMap
 	 */
 	void killByProcedure(Map<String, Object> paramMap);

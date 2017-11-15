@@ -22,22 +22,22 @@ public class RedisDao {
 	}
 
 	public Seckill getSeckill(long seckillId) {
-		// redis≤Ÿ◊˜¬ﬂº≠
+		// redisÊìç‰ΩúÈÄªËæë
 		try {
 			Jedis jedis = jedisPool.getResource();
 			try {
 				String key = "seckill:" + seckillId;
-				// ≤¢√ª”– µœ÷ƒ⁄≤ø–Ú¡–ªØ
-				// get -> byte[] -> ∑¥–Ú¡–ªØ -> Object£®Seckill£©
-				// ≤…”√◊‘∂®“Â–Ú¡–ªØ
-				// protostuff £∫ pojo.
+				// Âπ∂Ê≤°ÊúâÂÆûÁé∞ÂÜÖÈÉ®Â∫èÂàóÂåñ
+				// get -> byte[] -> ÂèçÂ∫èÂàóÂåñ -> ObjectÔºàSeckillÔºâ
+				// ÈááÁî®Ëá™ÂÆö‰πâÂ∫èÂàóÂåñ
+				// protostuff Ôºö pojo.
 				byte[] bytes = jedis.get(key.getBytes());
-				//ª∫¥ÊªÒ»°µΩ ˝æ›
+				//ÁºìÂ≠òËé∑ÂèñÂà∞Êï∞ÊçÆ
 				if (bytes != null) {
-					//ø’∂‘œÛ
+					//Á©∫ÂØπË±°
 					Seckill seckill = schema.newMessage();
 					ProtostuffIOUtil.mergeFrom(bytes, seckill, schema);
-					//seckill ±ª∑¥–Ú¡–ªØ
+					//seckill Ë¢´ÂèçÂ∫èÂàóÂåñ
 					return seckill;
 				}
 			} 
@@ -51,15 +51,15 @@ public class RedisDao {
 	}
 
 	public String putSeckill(Seckill seckill) {
-		// set Object(Seckill) -> –Ú¡–ªØ -> byte[] 
+		// set Object(Seckill) -> Â∫èÂàóÂåñ -> byte[] 
 		try {
 			Jedis jedis = jedisPool.getResource();
 			try {
 				String key = "seckill:" + seckill.getSeckillId();
 				byte[] bytes = ProtostuffIOUtil.toByteArray(seckill, schema, 
 						LinkedBuffer.allocate(LinkedBuffer.DEFAULT_BUFFER_SIZE));
-				//≥¨ ±ª∫¥Ê
-				int timeout = 60 * 60;//1–° ±
+				//Ë∂ÖÊó∂ÁºìÂ≠ò
+				int timeout = 60 * 60;//1Â∞èÊó∂
 				String result = jedis.setex(key.getBytes(), timeout, bytes);
 				return result;
 			} finally {

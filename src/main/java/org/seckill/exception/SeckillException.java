@@ -1,7 +1,7 @@
 package org.seckill.exception;
 
 /**
- * 秒杀相关业务异常
+ * 绉掓潃鐩稿叧涓氬姟寮傚父
  * 
  * @author Administrator
  *

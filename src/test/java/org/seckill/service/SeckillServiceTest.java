@@ -54,7 +54,7 @@ public class SeckillServiceTest {
 				logger.error(e.getMessage());
 			}
 		} else {
-			//ÃëÉ±Î´¿ªÆô
+			//ç§’æ€æœªå¼€å¯
 			logger.warn("exposer={}",exposer);
 		}
 	}

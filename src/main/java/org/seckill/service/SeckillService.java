@@ -10,7 +10,7 @@ import org.seckill.exception.SeckillCloseException;
 import org.seckill.exception.SeckillException;
 
 /**
- * ÒµÎñ½Ó¿Ú£ºÕ¾ÔÚ¡°Ê¹ÓÃÕß¡±½Ç¶ÈÉè¼Æ½Ó¿Ú Èı¸ö·½Ãæ£º·½·¨¶¨ÒåµÄÁ£¶È£¬²ÎÊı£¬·µ»ØÀàĞÍ£¨return ÀàĞÍ/Òì³££©
+ * ä¸šåŠ¡æ¥å£ï¼šç«™åœ¨â€œä½¿ç”¨è€…â€è§’åº¦è®¾è®¡æ¥å£ ä¸‰ä¸ªæ–¹é¢ï¼šæ–¹æ³•å®šä¹‰çš„ç²’åº¦ï¼Œå‚æ•°ï¼Œè¿”å›ç±»å‹ï¼ˆreturn ç±»å‹/å¼‚å¸¸ï¼‰
  * 
  * @author Administrator
  *
@@ -18,14 +18,14 @@ import org.seckill.exception.SeckillException;
 public interface SeckillService {
 
 	/**
-	 * ²éÑ¯ËùÓĞÃëÉ±¼ÇÂ¼
+	 * æŸ¥è¯¢æ‰€æœ‰ç§’æ€è®°å½•
 	 * 
 	 * @return
 	 */
 	List<Seckill> getSeckillList();
 
 	/**
-	 * ²éÑ¯µ¥¸öÃëÉ±¼ÇÂ¼
+	 * æŸ¥è¯¢å•ä¸ªç§’æ€è®°å½•
 	 * 
 	 * @param seckillId
 	 * @return
@@ -33,14 +33,14 @@ public interface SeckillService {
 	Seckill getSeckillById(long seckillId);
 
 	/**
-	 * ÃëÉ±¿ªÆôÊ±£¬Êä³öÃëÉ±½Ó¿ÚµØÖ·£¬·ñÔòÊä³öÏµÍ³Ê±¼äºÍÃëÉ±Ê±¼ä
+	 * ç§’æ€å¼€å¯æ—¶ï¼Œè¾“å‡ºç§’æ€æ¥å£åœ°å€ï¼Œå¦åˆ™è¾“å‡ºç³»ç»Ÿæ—¶é—´å’Œç§’æ€æ—¶é—´
 	 * 
 	 * @param seckillId
 	 */
 	Exposer exportSeckillUrl(long seckillId);
 	
 	/**
-	 * Ö´ĞĞÃëÉ±²Ù×÷
+	 * æ‰§è¡Œç§’æ€æ“ä½œ
 	 * @param seckillId
 	 * @param userPhone
 	 * @param md5
@@ -49,7 +49,7 @@ public interface SeckillService {
 		throws SeckillException,RepeatKillException,SeckillCloseException;
 	
 	/**
-	 * Ö´ĞĞÃëÉ±²Ù×÷by´æ´¢¹ı³Ì
+	 * æ‰§è¡Œç§’æ€æ“ä½œbyå­˜å‚¨è¿‡ç¨‹
 	 * @param seckillId
 	 * @param userPhone
 	 * @param md5

@@ -78,9 +78,9 @@
 		$(function() {
 			//使用EL表达式传入参数(编译工具不同,以下部分需要加双引号)
 			seckill.detail.init({
-				seckillId : "${seckill.seckillId}",
-				startTime : "${seckill.startTime.time}",//毫秒
-				endTime : "${seckill.endTime.time}"
+				seckillId : '${seckill.seckillId}',
+				startTime : '${seckill.startTime.time}',//毫秒
+				endTime : '${seckill.endTime.time}'
 			});
 		});
 	</script>

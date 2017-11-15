@@ -4,7 +4,7 @@ import org.seckill.entity.SuccessKilled;
 import org.seckill.enums.SeckillStatesEnum;
 
 /**
- * ·â×°ÃëÉ±Ö´ĞĞºóµÄ½á¹û
+ * å°è£…ç§’æ€æ‰§è¡Œåçš„ç»“æœ
  * @author Administrator
  *
  */
@@ -12,11 +12,11 @@ public class SeckillExecution {
 	
 	//id
 	private long seckillId;
-	//ÃëÉ±Ö´ĞĞºóµÄ½á¹û
+	//ç§’æ€æ‰§è¡Œåçš„ç»“æœ
 	private int state;
-	//×´Ì¬±êÊ¾
+	//çŠ¶æ€æ ‡ç¤º
 	private String stateInfo;
-	//ÃëÉ±³É¹¦¶ÔÏó
+	//ç§’æ€æˆåŠŸå¯¹è±¡
 	private SuccessKilled successKilled;
 	
 	public SeckillExecution(long seckillId, SeckillStatesEnum stateEnum, SuccessKilled successKilled) {

@@ -1,6 +1,6 @@
 package org.seckill.dto;
 
-//所有的ajax请求的返回类型，封装json结果
+//鎵�鏈夌殑ajax璇锋眰鐨勮繑鍥炵被鍨嬶紝灏佽json缁撴灉
 public class SeckillResult<T> {
 	
 	private boolean success;

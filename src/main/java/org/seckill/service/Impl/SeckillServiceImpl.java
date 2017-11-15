@@ -30,7 +30,7 @@ import org.springframework.util.DigestUtils;
 public class SeckillServiceImpl implements SeckillService {
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
 
-	// ×¢ÈëServiceÒÀÀµ
+	// æ³¨å…¥Serviceä¾èµ–
 	@Autowired
 	private SeckillDao seckillDao;
 	@Autowired
@@ -38,7 +38,7 @@ public class SeckillServiceImpl implements SeckillService {
 	@Autowired
 	private RedisDao redisDao;
 
-	// MD5ÑÎÖµ×Ö·û´®£¬ÓÃÓÚ»ìÏıÉú³ÉµÄMD5
+	// MD5ç›å€¼å­—ç¬¦ä¸²ï¼Œç”¨äºæ··æ·†ç”Ÿæˆçš„MD5
 	private final String salt = "saldjaklhghda;!@%$&(*&#$%@#$!@";
 
 	public List<Seckill> getSeckillList() {
@@ -50,23 +50,23 @@ public class SeckillServiceImpl implements SeckillService {
 	}
 
 	public Exposer exportSeckillUrl(long seckillId) {
-		// ÓÅ»¯µã redis»º´æÓÅ»¯ ÔÚ³¬Ê±µÄ»ù´¡ÉÏÎ¬»¤Ò»ÖÂĞÔ
-		// 1.Ê×ÏÈ·ÃÎÊRedisÖĞ»º´æµÄÊı¾İ
+		// ä¼˜åŒ–ç‚¹ redisç¼“å­˜ä¼˜åŒ– åœ¨è¶…æ—¶çš„åŸºç¡€ä¸Šç»´æŠ¤ä¸€è‡´æ€§
+		// 1.é¦–å…ˆè®¿é—®Redisä¸­ç¼“å­˜çš„æ•°æ®
 		Seckill seckill = redisDao.getSeckill(seckillId);
 		if (seckill == null) {
-			// 2.·ÃÎÊÊı¾İ¿âÖĞµÄÊı¾İ
+			// 2.è®¿é—®æ•°æ®åº“ä¸­çš„æ•°æ®
 			seckill = seckillDao.queryById(seckillId);
 			if (seckill == null) {
 				return new Exposer(false, seckillId);
 			} else {
-				// 3.½«»ñÈ¡µ½µÄ¶ÔÏó»º´æµ½Redis»º´æÖĞÈ¥
+				// 3.å°†è·å–åˆ°çš„å¯¹è±¡ç¼“å­˜åˆ°Redisç¼“å­˜ä¸­å»
 				redisDao.putSeckill(seckill);
 			}
 		}
 
 		Date startTime = seckill.getStartTime();
 		Date endTime = seckill.getEndTime();
-		// ÏµÍ³µ±Ç°Ê±¼ä
+		// ç³»ç»Ÿå½“å‰æ—¶é—´
 		Date nowTime = new Date();
 		if (startTime.getTime() > nowTime.getTime() || endTime.getTime() < nowTime.getTime()) {
 			return new Exposer(false, seckillId, nowTime.getTime(), startTime.getTime(), endTime.getTime());
@@ -85,9 +85,9 @@ public class SeckillServiceImpl implements SeckillService {
 	}
 
 	/**
-	 * Ê¹ÓÃ×¢½â¿ØÖÆÊÂÎñ·½·¨µÄÓÅµã 1.¿ª·¢ÍÅ¶Ó´ò³ÉÒ»ÖÂÔ¼¶¨£¬Ã÷È·±ê×¢ÊÂÎñ·½·¨µÄ±à³Ì·ç¸ñ¡£
-	 * 2.±£Ö¤ÊÂÎñ·½·¨µÄÖ´ĞĞÊ±¼ä¾¡¿ÉÄÜ¶Ì£¬²»Òª´©²åÆäËûÍøÂç²Ù×÷RPC/HTTPÇëÇó»òÕß°şÀëµ½ÊÂÎñ·½·¨Íâ
-	 * 3.²»ÊÇËùÓĞµÄ·½·¨¶¼ĞèÒªÊÂÎñ¡£ÈçÖ»ÓĞÒ»ÌõĞŞ¸Ä²Ù×÷£¬»òÕßÊÇÖ»¶ÁµÄ²Ù×÷¡£
+	 * ä½¿ç”¨æ³¨è§£æ§åˆ¶äº‹åŠ¡æ–¹æ³•çš„ä¼˜ç‚¹ 1.å¼€å‘å›¢é˜Ÿæ‰“æˆä¸€è‡´çº¦å®šï¼Œæ˜ç¡®æ ‡æ³¨äº‹åŠ¡æ–¹æ³•çš„ç¼–ç¨‹é£æ ¼ã€‚
+	 * 2.ä¿è¯äº‹åŠ¡æ–¹æ³•çš„æ‰§è¡Œæ—¶é—´å°½å¯èƒ½çŸ­ï¼Œä¸è¦ç©¿æ’å…¶ä»–ç½‘ç»œæ“ä½œRPC/HTTPè¯·æ±‚æˆ–è€…å‰¥ç¦»åˆ°äº‹åŠ¡æ–¹æ³•å¤–
+	 * 3.ä¸æ˜¯æ‰€æœ‰çš„æ–¹æ³•éƒ½éœ€è¦äº‹åŠ¡ã€‚å¦‚åªæœ‰ä¸€æ¡ä¿®æ”¹æ“ä½œï¼Œæˆ–è€…æ˜¯åªè¯»çš„æ“ä½œã€‚
 	 */
 	@Transactional
 	public SeckillExecution executeSeckill(long seckillId, long userPhone, String md5)
@@ -99,19 +99,19 @@ public class SeckillServiceImpl implements SeckillService {
 
 		Date killTime = new Date();
 		try {
-			// ¼ÇÂ¼¹ºÂòĞĞÎª£¨insertÓï¾ä²Ù×÷²¢ĞĞ£¬¶øupdateÓÉÓÚ¸üĞÂµÄÊÇÍ¬Ò»ÌõÊı¾İĞèÒª´®ĞĞ£©
+			// è®°å½•è´­ä¹°è¡Œä¸ºï¼ˆinsertè¯­å¥æ“ä½œå¹¶è¡Œï¼Œè€Œupdateç”±äºæ›´æ–°çš„æ˜¯åŒä¸€æ¡æ•°æ®éœ€è¦ä¸²è¡Œï¼‰
 			int insertCount = successKilledDao.insertSuccessKilled(seckillId, userPhone);
-			// Î¨Ò»£ºseckillId, userPhone
+			// å”¯ä¸€ï¼šseckillId, userPhone
 			if (insertCount <= 0) {
 				throw new RepeatKillException("seckill repeated");
 			} else {
-				// ¼õ¿â´æ
+				// å‡åº“å­˜
 				int updateCount = seckillDao.reduceNumber(seckillId, killTime);
 				if (updateCount <= 0) {
-					// Ã»ÓĞ¸üĞÂ¼ÇÂ¼£¬ËµÃ÷ÃëÉ±½áÊø
+					// æ²¡æœ‰æ›´æ–°è®°å½•ï¼Œè¯´æ˜ç§’æ€ç»“æŸ
 					throw new SeckillCloseException("seckill is closed");
 				} else {
-					// ÃëÉ±³É¹¦
+					// ç§’æ€æˆåŠŸ
 					SuccessKilled successKilled = successKilledDao.queryByIdWithSeckill(seckillId, userPhone);
 					return new SeckillExecution(seckillId, SeckillStatesEnum.SUCCESS, successKilled);
 				}
@@ -122,7 +122,7 @@ public class SeckillServiceImpl implements SeckillService {
 			throw e2;
 		} catch (Exception e) {
 			logger.error(e.getMessage(), e);
-			// ËùÓĞ±àÒëÆÚÒì³£ ×ª»¯ÎªÔËĞĞÆÚÒì³£
+			// æ‰€æœ‰ç¼–è¯‘æœŸå¼‚å¸¸ è½¬åŒ–ä¸ºè¿è¡ŒæœŸå¼‚å¸¸
 			throw new SeckillException("seckill inner error");
 		}
 	}
@@ -139,7 +139,7 @@ public class SeckillServiceImpl implements SeckillService {
 		paramMap.put("result", null);
 		try {
 			seckillDao.killByProcedure(paramMap);
-			// »ñÈ¡result
+			// è·å–result
 			int result = MapUtils.getInteger(paramMap, "result", -2);
 			if (result == 1) {
 				SuccessKilled sKilled = successKilledDao.queryByIdWithSeckill(seckillId, userPhone);

@@ -1,7 +1,7 @@
 package org.seckill.exception;
 
 /**
- * ÖØ¸´ÃëÉ±Òì³££¨ÔËĞĞÆÚÒì³££©
+ * é‡å¤ç§’æ€å¼‚å¸¸ï¼ˆè¿è¡ŒæœŸå¼‚å¸¸ï¼‰
  * 
  * @author Administrator
  *
