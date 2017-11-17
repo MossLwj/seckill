@@ -66,13 +66,12 @@
 		src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<%--使用CDN 获取公共js http://www.bootcdn.cn/--%>
 	<%--jQuery Cookie操作插件--%>
-	<script
-		src="http://cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+	<script src="http://cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+
 	<%--jQuery countDown倒计时插件--%>
-	<script
-		src="http://cdn.bootcss.com/jquery.countdown/2.1.0/jquery.countdown.min.js"></script>
-	<script src="/seckill/resource/script/seckill.js"
-		type="text/javascript"></script>
+	<script src="http://cdn.bootcss.com/jquery.countdown/2.1.0/jquery.countdown.min.js"></script>
+
+	<script src="/resource/script/seckill.js" type="text/javascript"></script>
 
 	<script type="text/javascript">
 		$(function() {

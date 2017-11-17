@@ -112,7 +112,7 @@ var seckill = {
 						// 电话写入cookie
 						$.cookie('killPhone', inputPhone, {
 							expires : 7,
-							path : '/seckill/seckill'
+							path : '/seckill'
 						});
 						// 验证通过，刷新页面
 						window.location.reload();
